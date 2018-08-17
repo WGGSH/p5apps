@@ -111,11 +111,11 @@ class Vector {
   // }
 
   // // セッター
-  // set(_x, _y, _z) {
-  //   this.x = _x;
-  //   this.y = _y;
-  //   this.z = _z;
-  // }
+  set(_x, _y, _z) {
+    this.x = _x;
+    this.y = _y;
+    this.z = _z;
+  }
 
   // コンソールに出力
   print() {

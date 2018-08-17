@@ -1,4 +1,5 @@
 var game;
+var input;
 
 function setup() {
   createCanvas(windowWidth, windowHeight,WEBGL);
@@ -8,10 +9,12 @@ function setup() {
   });
 
   game = new Game();
+  input = new Input();
 }
 
 function draw() {
   background(0);
+  input.update();
 
   game.update();
   game.draw();
