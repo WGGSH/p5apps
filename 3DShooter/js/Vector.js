@@ -34,6 +34,7 @@ class Vector {
     this.x *= _value;
     this.y *= _value;
     this.z *= _value;
+    return this;
   }
 
   // 除算(引数は実数)
@@ -105,10 +106,10 @@ class Vector {
     return !this.lt(_vec);
   }
 
-  // // ゲッター
-  // get() {
-  //   return this;
-  // }
+  // ゲッター
+  getValue() {
+    return new Vector(this.x,this.y,this.z);
+  }
 
   // // セッター
   set(_x, _y, _z) {

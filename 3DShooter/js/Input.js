@@ -46,6 +46,14 @@ class Input{
     return this._isPress;
   }
 
+  pressCount() {
+    return this._pressCount;
+  }
+
+  releaseCount() {
+    return this._releaseCount;
+  }
+
   getPoint() {
     return new Vector(this._point.x, this._point.y, 0);
   }

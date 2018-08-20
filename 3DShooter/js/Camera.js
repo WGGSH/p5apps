@@ -3,6 +3,7 @@ class PlayerCamera{
     this._angleX = 0;
     this._angleY = 0;
     this.range = 500.0;
+    this._cameraDirection = new Vector();
 
 
     ambientLight(100);
@@ -28,15 +29,18 @@ class PlayerCamera{
       // console.log(this._angleX,this._angleY);
     }
 
-    let cameraDirection = new Vector(
+    this._cameraDirection = new Vector(
       this.range * Math.cos(this._angleX) * Math.cos(this._angleY),
       this.range * Math.sin(this._angleY),
       this.range * Math.sin(this._angleX) * Math.cos(this._angleY)
     );
-    camera(0, 100, 0, cameraDirection.x, cameraDirection.y, cameraDirection.z, 0, 1, 0);
+    camera(0, 0, 0, this._cameraDirection.x, this._cameraDirection.y, this._cameraDirection.z, 0, 1, 0);
     // camera(cameraDirection.x, cameraDirection.y, cameraDirection.z, 0, 0, 0, 0, 1, 0);
     // console.log(cameraDirection);
   }
 
-  
+  cameraDirection() {
+    return this._cameraDirection.getValue();
+  }
+
 }
