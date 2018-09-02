@@ -2,6 +2,7 @@ var game;
 var input;
 
 function setup() {
+
   createCanvas(windowWidth, windowHeight,WEBGL);
 
   window.addEventListener('touchmove', function (event) {

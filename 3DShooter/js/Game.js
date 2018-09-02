@@ -1,7 +1,11 @@
 class Game{
   constructor() {
+
     this._playerCamera = new PlayerCamera();
     this._gameobjects = new Array();
+    this._resource = new Resource();
+    // blendMode(ADD);
+
   }
 
   update() {
@@ -16,13 +20,29 @@ class Game{
       }
     }
 
-    // 武器の発射
-    if (input.isClicked()) {
-      let weapon = new Weapon();
-      weapon.setPosition(this._playerCamera.cameraDirection().normalized().mult(55));
-      weapon.setVelocity(this._playerCamera.cameraDirection().normalized());
-      weapon.setAccel(this._playerCamera.cameraDirection().normalized());
-      this._gameobjects.push(weapon);
+    if (frameCount % 2 == 0) {
+      let X = 6;
+      let Y = 6;
+      let angleBuf1 = 3.14 / X * 2;
+      let angleBuf2 = 6.28 / Y;
+      // let angleBuf3 = frameCount * frameCount / 60000;
+      let angleBuf3 = (frameCount / 60);
+      let angleBuf4 = (frameCount / 120)%0.3 - 0.15;
+      let angle1, angle2;
+      for (let i = 0; i < X; i++) {
+        for (let j = 0; j < Y; j++) {
+          let weapon = new Weapon();
+          weapon.setPosition(new Vector(0, 0, 0));
+          angle1 = angleBuf1 * i + angleBuf3 * (i > X / 3 ? 1 : -1);
+          angle2 = angleBuf2 * j + angleBuf4;
+          let vecX = 5.0 * Math.cos(angle1) * Math.cos(angle2);
+          let vecY = 5.0 * Math.sin(angle2);
+          let vecZ = 5.0 * Math.sin(angle1) * Math.cos(angle2);
+          weapon.setVelocity(new Vector(vecX, vecY, vecZ));
+          weapon.setAccel(new Vector(0, 0, 0));
+          this._gameobjects.push(weapon);
+        }
+      }
     }
   }
 
@@ -50,12 +70,20 @@ class Game{
     stroke(255);
     translate(500, 0, 0);
     rotateX(frameCount*0.01);
-    box(150, 150, 150);
+    // box(150, 150, 150);
     pop();
 
     noFill();
-    sphere(2000,24,24);
+    // sphere(2000,24,24);
 
     pop();
+  }
+
+  getPlayerCamera() {
+    return this._playerCamera;
+  }
+
+  getResource() {
+    return this._resource;
   }
 }
